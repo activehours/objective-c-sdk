@@ -497,6 +497,18 @@ NSString * const OPTLYAPIEndpointHost = @"api.optimizely.com";
     return fileName;
 }
 
+- (NSString *)bundledCertWithName:(NSString *)bundleCertFileName {
+    NSString *bundledCertFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:bundleCertFileName ofType:@"cer"];
+    if (bundledCertFilePath == nil) { // maybe the certs are embdedded in resource bundle
+        NSString *resourcesBundle = [[NSBundle bundleForClass:[self class]] pathForResource:@"OptimizelySDKCoreiOS" ofType:@"bundle"];
+        if (resourcesBundle != nil) {
+            NSBundle *resourceBundle = [NSBundle bundleWithPath:resourcesBundle];
+            bundledCertFilePath = [resourceBundle pathForResource:bundleCertFileName ofType:@"cer"];
+        }
+    }
+    return bundledCertFilePath;
+}
+
 - (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge
  completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler {
     BOOL allowConnection = NO;
@@ -509,7 +521,7 @@ NSString * const OPTLYAPIEndpointHost = @"api.optimizely.com";
             serverTrust = challenge.protectionSpace.serverTrust;
             SecTrustResultType sectTrustResult = kSecTrustResultInvalid;
             if (serverTrust != nil && SecTrustEvaluate(serverTrust, &sectTrustResult) == errSecSuccess) {
-                NSString *bundledCertFilePath = [[NSBundle bundleForClass:[self class]] pathForResource:bundleCertFileName ofType:@"cer"];
+                NSString *bundledCertFilePath = [self bundledCertWithName:bundleCertFileName];
                 if (bundledCertFilePath != nil) {
                     NSData *pinnedCertificateData = [NSData dataWithContentsOfFile:bundledCertFilePath];
                     SecCertificateRef pinnedCertificateRef = SecCertificateCreateWithData(NULL, (CFDataRef) pinnedCertificateData);

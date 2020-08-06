@@ -7,6 +7,7 @@
 [![Podspec](https://img.shields.io/cocoapods/v/OptimizelySDKiOS.svg)](https://cocoapods.org/pods/OptimizelySDKiOS)
 ![Platforms](https://img.shields.io/cocoapods/p/OptimizelySDKTVOS.svg)
 [![Podspec](https://img.shields.io/cocoapods/v/OptimizelySDKTVOS.svg)](https://cocoapods.org/pods/OptimizelySDKTVOS)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Factivehours%2Foptimizely-objc-sdk.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Factivehours%2Foptimizely-objc-sdk?ref=badge_shield)
 
 This repository houses the Objective-C SDK for use with Optimizely Full Stack and Optimizely Rollouts for Mobile and OTT.
 
@@ -157,3 +158,7 @@ License (Public Domain):: [https://github.com/PeterScott/murmur3l](https://githu
 Modfied: No
 Distributed: Yes
 Distribution: Binary
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Factivehours%2Foptimizely-objc-sdk.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Factivehours%2Foptimizely-objc-sdk?ref=badge_large)
